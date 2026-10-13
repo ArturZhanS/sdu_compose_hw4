@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -34,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -94,8 +97,9 @@ fun TipTimeLayout() {
             value = amountInput,
             onValueChange = { amountInput = it },
             modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 32.dp)
+                .fillMaxWidth()
+                .padding(bottom = 32.dp),
+            leadingIcon = R.drawable.baseline_money_24,
         )
         EditNumberField(
             label = R.string.how_was_the_service,
@@ -104,10 +108,11 @@ fun TipTimeLayout() {
                 imeAction = ImeAction.Done
             ),
             value = tipInput,
-            onValueChange = {tipInput = it},
+            onValueChange = { tipInput = it },
+            leadingIcon = R.drawable.baseline_percent_24,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 32.dp)
+                .padding(bottom = 32.dp),
         )
         RoundTheTipRow(
             roundUp = roundUp,
@@ -125,6 +130,7 @@ fun TipTimeLayout() {
 @Composable
 private fun EditNumberField(
     @StringRes label: Int,
+    @DrawableRes leadingIcon: Int,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = KeyboardType.Number,
         imeAction = ImeAction.Next
@@ -144,6 +150,7 @@ private fun EditNumberField(
         label = {
             Text(stringResource(label))
         },
+        leadingIcon = { Icon(painter = painterResource(id = leadingIcon), null) },
         modifier = modifier
     )
 }
