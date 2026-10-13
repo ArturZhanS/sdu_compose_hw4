@@ -178,7 +178,7 @@ private fun RoundTheTipRow(
     }
 }
 
-private fun calculateTip(
+internal fun calculateTip(
     amount: Double,
     tipPercent: Double = 15.0,
     roundUp: Boolean = false
