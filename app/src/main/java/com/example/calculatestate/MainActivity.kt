@@ -78,7 +78,8 @@ fun TipTimeLayout() {
             .fillMaxSize()
             .statusBarsPadding()
             .padding(40.dp)
-            .safeDrawingPadding(),
+            .safeDrawingPadding()
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
